@@ -4,7 +4,7 @@ render a calendar to your terminal.
 https://docs.python.org/3.6/library/calendar.html
 
 Write a program that accepts user input of the form
-  `calendar.py month [year]`
+  `14_cal.py month [year]`
 and does the following:
  - If the user doesn't specify any input, your program should 
    print the calendar for the current month. The 'datetime'
@@ -22,3 +22,23 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+cal = calendar.TextCalendar()
+
+def print_calendar(data):
+  today = datetime.now()
+  arg = data.split()
+
+  if len(arg) == 0:
+    print(cal.formatmonth(today.year, today.month))
+  elif len(arg) == 1:
+    print(cal.formatmonth(today.year, int(arg[0])))
+  elif len(arg) == 2:
+    print(cal.formatmonth(int(arg[1]), int(arg[0])))
+  else:
+    print('To run the function call: 14_cal.py month year')
+    print('Month and year are optional space separated integer values')
+
+user_input = input('Enter space separated month and year as integer values: ')
+
+print_calendar(user_input)
